@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: "localhost"
+    ports:
+      - "5433:5432"
+
+  app:
+    build: .
+    container_name: solana-sink
+    depends_on:
+      - postgres
+    environment:
+      TOKEN: "eyJhbGciOiJLTVNFUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjIwMjQ0NzkzOTAsImp0aSI6IjA4NTg5OWRjLTA2NzYtNGY5Ny1hYjQ0LTJlNjA3NThmODJhNyIsImlhdCI6MTcwOTExOTM5MCwiaXNzIjoiZGZ1c2UuaW8iLCJzdWIiOiIwbHVmeWJjZmQzYWZhZGJiZTUxNDciLCJ2IjoxLCJha2kiOiI1Zjg0YzIwOGVjYjhiMjhjNTgwNGE2YjdmMDE1ZjcxNDk3ODdiYjc1NTE2YzViNDMzNmNjODJmYzdhYmQyZTAwIiwidWlkIjoiMGx1ZnliY2ZkM2FmYWRiYmU1MTQ3In0.8bn1oahx73-LCbfssK-7fzRINHkl_SlKr-G-baGDlctlFnjOnVncSxrfG-LpbVc99n9dYceAvDHhBH2H5P0bPQ"
+      SPKG: https://spkg.io/topledger/tl-solana-dex-trades-1-0-13-v1.0.13.spkg
+      MODULE: map_block
+    ports:
+      - "3000:3000"
