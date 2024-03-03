@@ -11,6 +11,8 @@ services:
       POSTGRES_HOST: "localhost"
     ports:
       - "5433:5432"
+    networks:
+      - solana-indexing
 
   app:
     build: .
@@ -23,3 +25,9 @@ services:
       MODULE: map_block
     ports:
       - "3000:3000"
+    networks:
+      - solana-indexing
+
+networks:
+  solana-indexing:
+    name: solana-indexing

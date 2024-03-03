@@ -23,10 +23,10 @@ const fetchPackage = async () => {
 
 const pool = new Pool({
   user: "postgres",
-  host: "localhost",
+  host: "postgres",
   database: "postgres",
   password: "test",
-  port: 5433,
+  port: 5432,
 });
 
 const saveToDatabase = async (data) => {
