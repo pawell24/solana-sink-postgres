@@ -10,9 +10,10 @@ import {
 import { createConnectTransport } from "@bufbuild/connect-web";
 import pkg from "pg";
 const { Pool } = pkg;
+import "dotenv/config";
 
-const TOKEN =
-  "eyJhbGciOiJLTVNFUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjIwMjM0MzYxNTMsImp0aSI6IjdjMTlmMWU4LWNiMDktNGU0OC05MmU1LTA5NTg5NDRiNGRiMCIsImlhdCI6MTcwODA3NjE1MywiaXNzIjoiZGZ1c2UuaW8iLCJzdWIiOiIwbHVmeWJjZmQzYWZhZGJiZTUxNDciLCJ2IjoxLCJha2kiOiI1Zjg0YzIwOGVjYjhiMjhjNTgwNGE2YjdmMDE1ZjcxNDk3ODdiYjc1NTE2YzViNDMzNmNjODJmYzdhYmQyZTAwIiwidWlkIjoiMGx1ZnliY2ZkM2FmYWRiYmU1MTQ3In0.H53wKwvOWGPtLqnY6HKL_t7cEPQG6WdAl1GAXYLCQQvnOY0Ay9OBbwraOk5FZmD0EljMlFrfN-1th5G07UgWWQ";
+const TOKEN = process.env.TOKEN;
+const START_BLOCK = process.env.START_BLOCK;
 const SPKG =
   "https://spkg.io/topledger/tl-solana-dex-trades-1-0-13-v1.0.13.spkg";
 const MODULE = "map_block";
@@ -68,7 +69,7 @@ const main = async () => {
     substreamPackage: pkg,
     outputModule: MODULE,
     productionMode: true,
-    startBlockNum: 245473147,
+    startBlockNum: START_BLOCK,
   });
 
   for await (const response of streamBlocks(transport, request)) {

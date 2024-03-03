@@ -3,6 +3,8 @@ version: "3.8"
 services:
   postgres:
     image: postgres:latest
+    volumes:
+      - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
     container_name: postgres
     environment:
       POSTGRES_USER: postgres
@@ -20,9 +22,8 @@ services:
     depends_on:
       - postgres
     environment:
-      TOKEN: "eyJhbGciOiJLTVNFUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjIwMjQ0NzkzOTAsImp0aSI6IjA4NTg5OWRjLTA2NzYtNGY5Ny1hYjQ0LTJlNjA3NThmODJhNyIsImlhdCI6MTcwOTExOTM5MCwiaXNzIjoiZGZ1c2UuaW8iLCJzdWIiOiIwbHVmeWJjZmQzYWZhZGJiZTUxNDciLCJ2IjoxLCJha2kiOiI1Zjg0YzIwOGVjYjhiMjhjNTgwNGE2YjdmMDE1ZjcxNDk3ODdiYjc1NTE2YzViNDMzNmNjODJmYzdhYmQyZTAwIiwidWlkIjoiMGx1ZnliY2ZkM2FmYWRiYmU1MTQ3In0.8bn1oahx73-LCbfssK-7fzRINHkl_SlKr-G-baGDlctlFnjOnVncSxrfG-LpbVc99n9dYceAvDHhBH2H5P0bPQ"
-      SPKG: https://spkg.io/topledger/tl-solana-dex-trades-1-0-13-v1.0.13.spkg
-      MODULE: map_block
+      TOKEN: "eyJhbGciOiJLTVNFUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjIwMjQ4MTk3NDAsImp0aSI6ImY3YWU0OTM1LTkyNjMtNDI2NC1iZjFkLTM1YTA2NDVmOWYxOCIsImlhdCI6MTcwOTQ1OTc0MCwiaXNzIjoiZGZ1c2UuaW8iLCJzdWIiOiIwbHVmeWJjZmQzYWZhZGJiZTUxNDciLCJ2IjoxLCJha2kiOiI1Zjg0YzIwOGVjYjhiMjhjNTgwNGE2YjdmMDE1ZjcxNDk3ODdiYjc1NTE2YzViNDMzNmNjODJmYzdhYmQyZTAwIiwidWlkIjoiMGx1ZnliY2ZkM2FmYWRiYmU1MTQ3In0.yHyfs_lXl2yvAhWktQcuI1gfXtpohRa_kH0-8liYqiyC8jehnG1qP3PaKV5eFS4OXu_FZJq0zERWMTe0AXEjyA"
+      START_BLOCK: 245473147
     ports:
       - "3000:3000"
     networks:

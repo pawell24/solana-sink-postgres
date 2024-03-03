@@ -1,0 +1,22 @@
+CREATE TABLE transaction_data (
+    block_date DATE,
+    block_time BIGINT,
+    block_slot BIGINT,
+    tx_id VARCHAR(200),
+    signer VARCHAR(200),
+    pool_address VARCHAR(200),
+    base_mint VARCHAR(200),
+    quote_mint VARCHAR(200),
+    base_vault VARCHAR(200),
+    quote_vault VARCHAR(200),
+    base_amount VARCHAR(200),
+    quote_amount VARCHAR(200),
+    is_inner_instruction BOOLEAN,
+    instruction_index INT,
+    instruction_type VARCHAR(20),
+    inner_instruction_index INT,
+    outer_program VARCHAR(200),
+    inner_program VARCHAR(200),
+    txn_fee BIGINT,
+    signer_sol_change BIGINT
+);
