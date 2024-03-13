@@ -19,6 +19,7 @@ services:
   app:
     build: .
     container_name: solana-sink
+    restart: always
     depends_on:
       - postgres
     environment:
